@@ -55,3 +55,5 @@ function drawSpaceAlien() {
 	context.strokeStyle = "Green";
 	context.fill();
 }
+
+//HAHAHHAHAHAHAHAH!!!
