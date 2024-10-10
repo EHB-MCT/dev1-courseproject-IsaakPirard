@@ -13,45 +13,30 @@ function drawSpaceAlien() {
 	context.stroke();
 	context.fill();
 
-	context.beginPath();
-	context.rect(200, 100, 50, 50);
-	context.stroke();
 	context.fillStyle = "Green";
 	context.strokeStyle = "Green";
+	context.beginPath();
+	context.rect(175, 125, 50, 50);
 	context.fill();
 
 	context.beginPath();
-	context.rect(250, 100, 50, 50);
-	context.stroke();
-	context.fillStyle = "Green";
-	context.strokeStyle = "Green";
+	context.rect(225, 125, 50, 50);
 	context.fill();
 
 	context.beginPath();
-	context.rect(300, 100, 50, 50);
+	context.rect(275, 125, 50, 50);
 	context.stroke();
-	context.fillStyle = "Green";
-	context.strokeStyle = "Green";
 	context.fill();
 
 	context.beginPath();
-	context.rect(200, 150, 50, 50);
-	context.stroke();
-	context.fillStyle = "Green";
-	context.strokeStyle = "Green";
+	context.rect(175, 175, 50, 50);
 	context.fill();
 
 	context.beginPath();
-	context.rect(300, 150, 50, 50);
-	context.stroke();
-	context.fillStyle = "Green";
-	context.strokeStyle = "Green";
+	context.rect(275, 175, 50, 50);
 	context.fill();
 
 	context.beginPath();
-	context.rect(250, 300, 50, 50);
-	context.stroke();
-	context.fillStyle = "Green";
-	context.strokeStyle = "Green";
+	context.rect(225, 325, 50, 50);
 	context.fill();
 }
