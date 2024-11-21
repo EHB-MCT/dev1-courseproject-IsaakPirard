@@ -23,9 +23,15 @@ function drawPixel(x, y) {
 }
 
 if (r3 >= 0) {
-	context.fillStyle = "Blue";
+	let randomBlue1 = randomNumber(0, 20);
+	let randomBlue2 = randomNumber(0, 230);
+	context.fillStyle =
+		"rgb(" + randomBlue1 + "," + randomBlue1 + "," + randomBlue2 + ")";
 } else {
-	context.fillStyle = "yellow";
+	let randomYellow1 = randomNumber(0, 20);
+	let randomYellow2 = randomNumber(0, 230);
+	context.fillStyle =
+		"rgb(" + randomYellow2 + "," + randomYellow2 + "," + randomYellow1 + ")";
 }
 
 context.fillRect(0, 0, width, height);
