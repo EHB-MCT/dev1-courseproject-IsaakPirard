@@ -12,55 +12,90 @@ function randomNumber(min, max) {
 let width = context.canvas.width;
 let height = context.canvas.height;
 
-let r = randomNumber(0, width);
-let r2 = randomNumber(0, height);
-let r3 = randomNumber(-50, 50);
+let r = randomNumber(-50, 50);
 
-let pixelSize = 40;
+let decidingFactor = randomNumber(-1, 1);
+let randomBoolean;
+
+if (decidingFactor >= 0) {
+	randomBoolean = true;
+} else {
+	randomBoolean = false;
+}
+
+let pixelSize = 50;
 
 function drawPixel(x, y) {
 	context.fillRect(x, y, pixelSize, pixelSize);
 }
 
-if (r3 >= 0) {
-	let randomBlue1 = randomNumber(0, 20);
-	let randomBlue2 = randomNumber(0, 230);
-	context.fillStyle =
-		"rgb(" + randomBlue1 + "," + randomBlue1 + "," + randomBlue2 + ")";
-} else {
-	let randomYellow1 = randomNumber(0, 20);
-	let randomYellow2 = randomNumber(0, 230);
-	context.fillStyle =
-		"rgb(" + randomYellow2 + "," + randomYellow2 + "," + randomYellow1 + ")";
+//
+
+//
+
+backgroundColor();
+function backgroundColor() {
+	if (r >= 0 && randomBoolean == true) {
+		let randomBlue1 = randomNumber(0, 0);
+		let randomBlue2 = randomNumber(100, 255);
+		context.fillStyle =
+			"rgb(" + randomBlue1 + "," + randomBlue1 + "," + randomBlue2 + ")";
+	} else if (r >= 0 && randomBoolean == false) {
+		let randomRed1 = randomNumber(0, 0);
+		let randomRed2 = randomNumber(100, 255);
+		context.fillStyle =
+			"rgb(" + randomRed2 + "," + randomRed1 + "," + randomRed1 + ")";
+	} else {
+		let randomYellow1 = randomNumber(0, 0);
+		let randomYellow2 = randomNumber(100, 255);
+		context.fillStyle =
+			"rgb(" + randomYellow2 + "," + randomYellow2 + "," + randomYellow1 + ")";
+	}
 }
 
 context.fillRect(0, 0, width, height);
 
 context.fillStyle = "white";
 
-for (let i = 0; i < 4; i++) {
-	if (r3 >= 0) {
-		drawPixel(r - 2 * pixelSize, r2 - 3 * pixelSize);
-		drawPixel(r - 3 * pixelSize, r2 - 3 * pixelSize);
-		drawPixel(r - 1 * pixelSize, r2 - 4 * pixelSize);
+for (let index = 0; index < 1; index++) {
+	let x = randomNumber(0, width);
+	let y = randomNumber(0, height);
+	drawFace(x, y, r);
+}
 
-		drawPixel(r + 2 * pixelSize, r2 - 3 * pixelSize);
-		drawPixel(r + 3 * pixelSize, r2 - 3 * pixelSize);
-		drawPixel(r + 1 * pixelSize, r2 - 4 * pixelSize);
-	} else {
-		drawPixel(r - 3 * pixelSize, r2 - 4 * pixelSize);
-		drawPixel(r - 2 * pixelSize, r2 - 4 * pixelSize);
-		drawPixel(r - 1 * pixelSize, r2 - 4 * pixelSize);
+function drawFace(x, y, r) {
+	for (let i = 0; i < 4; i++) {
+		if (r >= 0 && randomBoolean == true) {
+			drawPixel(x - 2 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x - 3 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x - 1 * pixelSize, y - 4 * pixelSize);
 
-		drawPixel(r + 3 * pixelSize, r2 - 4 * pixelSize);
-		drawPixel(r + 2 * pixelSize, r2 - 4 * pixelSize);
-		drawPixel(r + 1 * pixelSize, r2 - 4 * pixelSize);
+			drawPixel(x + 2 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x + 3 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x + 1 * pixelSize, y - 4 * pixelSize);
+		} else if (r >= 0 && randomBoolean == false) {
+			drawPixel(x - 2 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x - 3 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x - 1 * pixelSize, y - 2 * pixelSize);
+
+			drawPixel(x + 2 * pixelSize, y - 3 * pixelSize);
+			drawPixel(x + 3 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x + 1 * pixelSize, y - 2 * pixelSize);
+		} else {
+			drawPixel(x - 3 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x - 2 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x - 1 * pixelSize, y - 4 * pixelSize);
+
+			drawPixel(x + 3 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x + 2 * pixelSize, y - 4 * pixelSize);
+			drawPixel(x + 1 * pixelSize, y - 4 * pixelSize);
+		}
+
+		drawPixel(x, y);
+		drawPixel(x - i * pixelSize, y);
+		drawPixel(x + i * pixelSize, y);
+
+		drawPixel(x - 4 * pixelSize, y + r);
+		drawPixel(x + 4 * pixelSize, y + r);
 	}
-
-	drawPixel(r, r2);
-	drawPixel(r - i * pixelSize, r2);
-	drawPixel(r + i * pixelSize, r2);
-
-	drawPixel(r - 4 * pixelSize, r2 + r3);
-	drawPixel(r + 4 * pixelSize, r2 + r3);
 }
