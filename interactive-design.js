@@ -29,7 +29,35 @@ function drawPixel(x, y) {
 	context.fillRect(x, y, pixelSize, pixelSize);
 }
 
+function drawLine(x, y, x2, y2) {
+	context.beginPath();
+	context.moveTo(x, y);
+	context.lineTo(x2, y2);
+	context.strokeStyle = "Red";
+	context.lineWidth = "5";
+	context.stroke();
+	context.closePath();
+}
+
 // ^ Before-code stuff ^
+
+window.onmousedown = transfer;
+
+/**
+ *
+ * @param {MouseEvent} eventData
+ */
+function transfer(eventData) {
+	let posX = eventData.pageX;
+	let posY = eventData.pageY;
+
+	if (posY > height / 2) {
+		randomBoolean = false;
+	} else {
+		randomBoolean = true;
+	}
+	console.log(randomBoolean);
+}
 
 if (randomBoolean == true) {
 	drawHappyFace(width / 2 - 2 * pixelSize, height / 2);
@@ -38,7 +66,10 @@ if (randomBoolean == true) {
 }
 
 function drawHappyFace(x, y) {
-	context.fillStyle = "black";
+	context.fillStyle = "gold";
+	context.fillRect(0, 0, width, height);
+
+	context.fillStyle = "white";
 
 	drawPixel(x, y);
 
@@ -64,6 +95,10 @@ function drawHappyFace(x, y) {
 }
 
 function drawSadFace(x, y) {
+	context.fillStyle = "Blue";
+	context.fillRect(0, 0, width, height);
+
+	context.fillStyle = "white";
 	drawPixel(x, y);
 
 	//left side of mouth
@@ -92,16 +127,11 @@ function drawSadFace(x, y) {
 
 	function drawTears() {
 		tearMovement += 2;
-		context.fillStyle = "Blue";
+		context.fillStyle = "Cyan";
 		drawPixel(width / 2, height / 2 - 105 + tearMovement);
 		drawPixel(width / 2 - 4 * pixelSize, height / 2 - 105 + tearMovement);
 		requestAnimationFrame(drawTears);
 	}
 }
 
-let mouseDown = false;
-window.onmousedown = verify;
-
-function verify() {
-	mouseDown = true;
-}
+drawLine(0, height / 2, width, height / 2);
