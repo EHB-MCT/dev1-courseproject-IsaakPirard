@@ -15,6 +15,8 @@ let height = context.canvas.height;
 let pixelSize = 50;
 let tearMovement = 0;
 
+let flowingTears = false;
+
 let randomBoolean;
 let nonRandomBoolean = true;
 let randomValue = randomNumber(1, 2);
@@ -33,7 +35,7 @@ function drawLine(x, y, x2, y2) {
 	context.beginPath();
 	context.moveTo(x, y);
 	context.lineTo(x2, y2);
-	context.strokeStyle = "Red";
+	context.strokeStyle = "White";
 	context.lineWidth = "5";
 	context.stroke();
 	context.closePath();
@@ -57,6 +59,16 @@ function transfer(eventData) {
 		randomBoolean = true;
 	}
 	console.log(randomBoolean);
+
+	if (randomBoolean == true) {
+		drawHappyFace(width / 2 - 2 * pixelSize, height / 2);
+		nonRandomBoolean = false;
+	} else {
+		tearMovement = 0;
+		drawSadFace(width / 2 - 2 * pixelSize, height / 2);
+		nonRandomBoolean = true;
+		drawTears();
+	}
 }
 
 if (randomBoolean == true) {
@@ -92,6 +104,8 @@ function drawHappyFace(x, y) {
 	drawPixel(x - 3 * pixelSize, y - 4 * pixelSize);
 	drawPixel(x - 2 * pixelSize, y - 5 * pixelSize);
 	drawPixel(x - 1 * pixelSize, y - 4 * pixelSize);
+
+	drawLine(0, height / 2, width, height / 2);
 }
 
 function drawSadFace(x, y) {
@@ -106,7 +120,7 @@ function drawSadFace(x, y) {
 	drawPixel(x + 2 * pixelSize, y);
 	drawPixel(x + 3 * pixelSize, y + pixelSize);
 
-	// left side of mouth
+	// right side of mouth
 	drawPixel(x - pixelSize, y);
 	drawPixel(x - 2 * pixelSize, y);
 	drawPixel(x - 3 * pixelSize, y + pixelSize);
@@ -125,13 +139,17 @@ function drawSadFace(x, y) {
 		drawTears();
 	}
 
-	function drawTears() {
-		tearMovement += 2;
-		context.fillStyle = "Cyan";
-		drawPixel(width / 2, height / 2 - 105 + tearMovement);
-		drawPixel(width / 2 - 4 * pixelSize, height / 2 - 105 + tearMovement);
-		requestAnimationFrame(drawTears);
-	}
+	drawLine(0, height / 2, width, height / 2);
 }
 
-drawLine(0, height / 2, width, height / 2);
+function drawTears() {
+	if (nonRandomBoolean == false) return;
+
+	tearMovement += 2;
+	context.fillStyle = "Cyan";
+	drawPixel(width / 2, height / 2 - 105 + tearMovement);
+	drawPixel(width / 2 - 4 * pixelSize, height / 2 - 105 + tearMovement);
+
+	// Continue animation
+	requestAnimationFrame(drawTears);
+}
