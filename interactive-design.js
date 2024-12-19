@@ -153,3 +153,5 @@ function drawTears() {
 	// Continue animation
 	requestAnimationFrame(drawTears);
 }
+
+// Taak klaar
